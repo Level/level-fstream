@@ -4,7 +4,7 @@
 
 **An [`fstream`][fstream] based WriteStream implementation for [LevelUp][levelup]**
 
-[![build status](https://secure.travis-ci.org/jcrugzz/level-fstream.png)](http://travis-ci.org/jcrugzz/level-fstream)
+[![build status](https://secure.travis-ci.org/Level/level-fstream.png)](http://travis-ci.org/Level/level-fstream)
 
 A simple restructure of the previous WriteStream implementation to preserve the
 [`fstream`][fstream] tests.
