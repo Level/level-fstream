@@ -1,6 +1,7 @@
 # level-fstream
 
-
+[![build
+status](https://secure.travis-ci.org/jcrugzz/level-fstream.png)](http://travis-ci.org/jcrugzz/level-fstream)
 
 Former `write-stream` implementation from levelup that allows for
 [`fstream`][fstream] based streams to be piped into
