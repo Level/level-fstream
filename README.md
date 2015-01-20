@@ -1,6 +1,6 @@
 # level-fstream
 
-![LevelDB Logo](https://twimg0-a.akamaihd.net/profile_images/3360574989/92fc472928b444980408147e5e5db2fa_bigger.png)
+<img alt="LevelDB Logo" height="100" src="http://leveldb.org/img/logo.svg">
 
 **An [`fstream`][fstream] based WriteStream implementation for [LevelUp][levelup]**
 
@@ -54,7 +54,7 @@ fstream.Reader('./directory')
 Licence &amp; copyright
 -------------------
 
-Copyright (c) 2012-2014 **level-fstream** contributors (listed above).
+Copyright (c) 2012-2015 **level-fstream** contributors (listed above).
 
 **level-fstream** is licensed under an MIT +no-false-attribs license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.
 
