@@ -29,19 +29,19 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "concat-stream": "^0.1.1",
-    "xtend": "^2.1.2"
+    "concat-stream": "^1.5.1",
+    "xtend": "^4.0.1"
   },
   "devDependencies": {
     "rimraf": "^2.2.6",
     "boganipsum": "^0.1.0",
-    "async": "^0.2.10",
+    "async": "^1.5.0",
     "readfiletree": "0.0.1",
-    "mkfiletree": "0.0.1",
-    "fstream": "^0.1.25",
+    "mkfiletree": "1.0.1",
+    "fstream": "^1.0.8",
     "referee": "^1.0.2",
-    "level": "^0.18.0",
-    "tar": "^0.1.19"
+    "level": "^1.4.0",
+    "tar": "^2.2.1"
   },
   "license": "MIT"
 }
