@@ -29,7 +29,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "concat-stream": "^0.1.1",
+    "concat-stream": "^1.6.0",
     "xtend": "^2.1.2"
   },
   "devDependencies": {
