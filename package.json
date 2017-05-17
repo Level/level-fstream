@@ -40,7 +40,7 @@
     "mkfiletree": "0.0.1",
     "fstream": "^0.1.25",
     "referee": "^1.0.2",
-    "level": "^0.18.0",
+    "level": "^1.7.0",
     "tar": "^0.1.19"
   },
   "license": "MIT"
