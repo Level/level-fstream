@@ -35,7 +35,7 @@
   "devDependencies": {
     "rimraf": "^2.2.6",
     "boganipsum": "^0.1.0",
-    "async": "^0.2.10",
+    "async": "^2.4.1",
     "readfiletree": "0.0.1",
     "mkfiletree": "0.0.1",
     "fstream": "^0.1.25",
