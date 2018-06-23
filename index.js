@@ -1,9 +1,3 @@
-/* Copyright (c) 2012-2014 LevelUP contributors
- * See list at <https://github.com/rvagg/node-levelup#contributing>
- * MIT +no-false-attribs License
- * <https://github.com/rvagg/node-levelup/blob/master/LICENSE>
- */
-
 var Stream       = require('stream').Stream
   , inherits     = require('util').inherits
   , extend       = require('xtend')
