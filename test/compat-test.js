@@ -5,13 +5,13 @@
  * Useful for comparing across LevelDB versions.
  */
 
-var async = require('async'),
-  rimraf = require('rimraf'),
-  path = require('path'),
-  tarcommon = require('./tarcommon'),
+var async = require('async')
+var rimraf = require('rimraf')
+var path = require('path')
+var tarcommon = require('./tarcommon')
 
-  dbtar = path.join(__dirname, 'test-data.db.tar'),
-  dblocation = path.join(__dirname, 'levelup_test_compat.db')
+var dbtar = path.join(__dirname, 'test-data.db.tar')
+var dblocation = path.join(__dirname, 'levelup_test_compat.db')
 
 function runTest (dbtar, callback) {
   async.series([

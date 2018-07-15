@@ -1,16 +1,17 @@
-var assert = require('referee').assert,
-  fs = require('fs'),
-  path = require('path'),
-  fstream = require('fstream'),
-  tar = require('tar'),
-  crypto = require('crypto'),
-  level = require('level'),
+var assert = require('referee').assert
+var fs = require('fs')
+var path = require('path')
+var fstream = require('fstream')
+var tar = require('tar')
+var crypto = require('crypto')
+var level = require('level')
 
-  dblocation = path.join(__dirname, 'levelup_test_binary.db'),
-  datatar = path.join(__dirname, 'test-data.tar'),
-  datadir = path.join(__dirname, 'test-data'),
-  db,
-  expectedEntries
+var dblocation = path.join(__dirname, 'levelup_test_binary.db')
+var datatar = path.join(__dirname, 'test-data.tar')
+var datadir = path.join(__dirname, 'test-data')
+
+var db
+var expectedEntries
 
 module.exports.dblocation = dblocation
 module.exports.datatar = datatar
@@ -64,8 +65,8 @@ module.exports.verify = function (callback) {
   var entries = 0
   db.readStream()
     .on('data', function (data) {
-      var md5sum = crypto.createHash('md5'),
-        dbmd5sum
+      var md5sum = crypto.createHash('md5')
+      var dbmd5sum
 
       md5sum.update(data.value)
       dbmd5sum = md5sum.digest('hex')

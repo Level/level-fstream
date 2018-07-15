@@ -6,9 +6,9 @@
  * the binary files.
  */
 
-var async = require('async'),
-  rimraf = require('rimraf'),
-  tarcommon = require('./tarcommon')
+var async = require('async')
+var rimraf = require('rimraf')
+var tarcommon = require('./tarcommon')
 
 console.log('***************************************************')
 console.log('RUNNING BINARY-DATA-TEST...')

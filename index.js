@@ -1,38 +1,38 @@
-var Stream = require('stream').Stream,
-  inherits = require('util').inherits,
-  extend = require('xtend'),
-  concatStream = require('concat-stream'),
+var Stream = require('stream').Stream
+var inherits = require('util').inherits
+var extend = require('xtend')
+var concatStream = require('concat-stream')
 
-  setImmediate = global.setImmediate || process.nextTick,
+var setImmediate = global.setImmediate || process.nextTick
 
-  defaultOptions = {
-    type: 'put',
-    keyEncoding: 'utf8',
-    valueEncoding: 'utf8'
-  },
+var defaultOptions = {
+  type: 'put',
+  keyEncoding: 'utf8',
+  valueEncoding: 'utf8'
+}
 
-  // copied from LevelUP
-  encodingNames = [
-    'hex',
-    'utf8',
-    'utf-8',
-    'ascii',
-    'binary',
-    'base64',
-    'ucs2',
-    'ucs-2',
-    'utf16le',
-    'utf-16le'
-  ],
+// copied from LevelUP
+var encodingNames = [
+  'hex',
+  'utf8',
+  'utf-8',
+  'ascii',
+  'binary',
+  'base64',
+  'ucs2',
+  'ucs-2',
+  'utf16le',
+  'utf-16le'
+]
 
-  // copied from LevelUP
-  encodingOpts = (function () {
-    var eo = {}
-    encodingNames.forEach(function (e) {
-      eo[e] = { valueEncoding: e }
-    })
-    return eo
-  }())
+// copied from LevelUP
+var encodingOpts = (function () {
+  var eo = {}
+  encodingNames.forEach(function (e) {
+    eo[e] = { valueEncoding: e }
+  })
+  return eo
+}())
 
 // copied from LevelUP
 function getOptions (levelup, options) {
@@ -62,13 +62,13 @@ function FileStream (options, db) {
   this.writable = true
   this.readable = false
 
-  var self = this,
-    ready = function () {
-      if (!self.writable) { return }
-      self._status = 'ready'
-      self.emit('ready')
-      self._process()
-    }
+  var self = this
+  var ready = function () {
+    if (!self.writable) { return }
+    self._status = 'ready'
+    self.emit('ready')
+    self._process()
+  }
 
   if (db.isOpen()) {
     setImmediate(ready)
@@ -127,18 +127,18 @@ FileStream.prototype._processDelayed = function () {
 }
 
 FileStream.prototype._process = function () {
-  var buffer,
-    self = this,
+  var buffer
+  var self = this
 
-    cb = function (err) {
-      if (!self.writable) return
-      if (self._status != 'closed') self._status = 'ready'
-      if (err) {
-        self.writable = false
-        return self.emit('error', err)
-      }
-      self._process()
+  var cb = function (err) {
+    if (!self.writable) return
+    if (self._status != 'closed') self._status = 'ready'
+    if (err) {
+      self.writable = false
+      return self.emit('error', err)
     }
+    self._process()
+  }
 
   if (self._status != 'ready' && self.writable) {
     if (self._buffer.length && self._status != 'closed') {
@@ -181,10 +181,10 @@ FileStream.prototype._process = function () {
 }
 
 FileStream.prototype._write = function (entry) {
-  var key = entry.path || entry.props.path,
-    self = this
+  var key = entry.path || entry.props.path
+  var self = this
 
-  if (!key) { return }
+  if (!key) return
 
   entry.pipe(concatStream(function (err, data) {
     if (err) {
