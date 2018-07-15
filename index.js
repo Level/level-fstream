@@ -82,7 +82,7 @@ inherits(FileStream, Stream)
 FileStream.prototype.write = function (data) {
   if (!this.writable) return false
   this._buffer.push(data)
-  if (this._status != 'init') this._processDelayed()
+  if (this._status !== 'init') this._processDelayed()
   if (this._options.maxBufferLength &&
       this._buffer.length > this._options.maxBufferLength) {
     this._writeBlock = true
@@ -113,7 +113,7 @@ FileStream.prototype.add = function (entry) {
   if (!entry.props) return
   if (entry.props.Directory) {
     entry.pipe(this._db.fileStream(this._options))
-  } else if (entry.props.File || entry.File || entry.type == 'File') {
+  } else if (entry.props.File || entry.File || entry.type === 'File') {
     this._write(entry)
   }
   return true
@@ -132,7 +132,7 @@ FileStream.prototype._process = function () {
 
   var cb = function (err) {
     if (!self.writable) return
-    if (self._status != 'closed') self._status = 'ready'
+    if (self._status !== 'closed') self._status = 'ready'
     if (err) {
       self.writable = false
       return self.emit('error', err)
@@ -140,8 +140,8 @@ FileStream.prototype._process = function () {
     self._process()
   }
 
-  if (self._status != 'ready' && self.writable) {
-    if (self._buffer.length && self._status != 'closed') {
+  if (self._status !== 'ready' && self.writable) {
+    if (self._buffer.length && self._status !== 'closed') {
       self._processDelayed()
     }
     return
@@ -173,7 +173,7 @@ FileStream.prototype._process = function () {
     return
   }
 
-  if (self._end && self._status != 'closed') {
+  if (self._end && self._status !== 'closed') {
     self._status = 'closed'
     self.writable = false
     self.emit('close')

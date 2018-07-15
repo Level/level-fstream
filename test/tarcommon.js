@@ -34,7 +34,9 @@ module.exports.extract = function (tarfile, dir, callback) {
   fs.createReadStream(tarfile)
     .pipe(tar.Extract({ path: dir }))
     .on('entry', function (entry) {
-      if (entry.props.File || entry.File || entry.type == 'File') { expectedEntries++ }
+      if (entry.props.File || entry.File || entry.type === 'File') {
+        expectedEntries++
+      }
     })
     .on('end', function () {
       console.log('Extracted tar file...')
