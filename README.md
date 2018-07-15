@@ -5,6 +5,7 @@
 **An [`fstream`][fstream] based WriteStream implementation for [LevelUp][levelup]**
 
 [![build status](https://secure.travis-ci.org/Level/level-fstream.png)](http://travis-ci.org/Level/level-fstream)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 A simple restructure of the previous WriteStream implementation to preserve the
 [`fstream`][fstream] tests.
@@ -18,16 +19,14 @@ npm install level-fstream --save
 ## Usage
 
 ```js
-var level = require('level');
-var levelfstream = require('level-fstream');
-var fstream = require('fstream');
+var level = require('level')
+var levelfstream = require('level-fstream')
+var fstream = require('fstream')
 
-var db = levelfstream(level('./test.db'));
+var db = levelfstream(level('./test.db'))
 
 fstream.Reader('./directory')
   .pipe(db.fileStream({ fstreamRoot: path.join(__dirname, '')} ))
-
-
 ```
 ### Contributors
 
