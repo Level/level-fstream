@@ -49,7 +49,7 @@ var fstreamRead = function (dir, db, callback) {
     .pipe(new fstream.Writer({ path: dir + '.out', type: 'Directory' })
       .on('close', function () {
         db.close(function (err) {
-              refute(err)
+          refute(err)
           callback(null, dir)
         })
       }))
