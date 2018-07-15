@@ -5,32 +5,32 @@
  * Useful for comparing across LevelDB versions.
  */
 
-var async      = require('async')
-  , rimraf     = require('rimraf')
-  , path       = require('path')
-  , tarcommon  = require('./tarcommon')
+var async = require('async'),
+  rimraf = require('rimraf'),
+  path = require('path'),
+  tarcommon = require('./tarcommon'),
 
-  , dbtar      = path.join(__dirname, 'test-data.db.tar')
-  , dblocation = path.join(__dirname, 'levelup_test_compat.db')
+  dbtar = path.join(__dirname, 'test-data.db.tar'),
+  dblocation = path.join(__dirname, 'levelup_test_compat.db')
 
 function runTest (dbtar, callback) {
   async.series([
-      // pre-clean
-      rimraf.bind(null, tarcommon.dblocation)
-    , rimraf.bind(null, dblocation)
-    , rimraf.bind(null, tarcommon.datadir)
-      // extract existing database
-    , tarcommon.extract.bind(null, dbtar, __dirname)
-      // extract data for comparison
-    , tarcommon.extract.bind(null, tarcommon.datatar, tarcommon.datadir)
-      // open database
-    , tarcommon.opendb.bind(null, dblocation)
-      // verify database entries are the same as the files
-    , tarcommon.verify
-      // clean up
-    , rimraf.bind(null, tarcommon.dblocation)
-    , rimraf.bind(null, dblocation)
-    , rimraf.bind(null, tarcommon.datadir)
+    // pre-clean
+    rimraf.bind(null, tarcommon.dblocation),
+    rimraf.bind(null, dblocation),
+    rimraf.bind(null, tarcommon.datadir),
+    // extract existing database
+    tarcommon.extract.bind(null, dbtar, __dirname),
+    // extract data for comparison
+    tarcommon.extract.bind(null, tarcommon.datatar, tarcommon.datadir),
+    // open database
+    tarcommon.opendb.bind(null, dblocation),
+    // verify database entries are the same as the files
+    tarcommon.verify,
+    // clean up
+    rimraf.bind(null, tarcommon.dblocation),
+    rimraf.bind(null, dblocation),
+    rimraf.bind(null, tarcommon.datadir)
   ], callback)
 }
 
