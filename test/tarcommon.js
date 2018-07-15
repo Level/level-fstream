@@ -1,30 +1,31 @@
-var assert       = require('referee').assert
-  , fs           = require('fs')
-  , path         = require('path')
-  , fstream      = require('fstream')
-  , tar          = require('tar')
-  , crypto       = require('crypto')
-  , level        = require('level')
+var assert = require('referee').assert
+var fs = require('fs')
+var path = require('path')
+var fstream = require('fstream')
+var tar = require('tar')
+var crypto = require('crypto')
+var level = require('level')
 
-  , dblocation   = path.join(__dirname, 'levelup_test_binary.db')
-  , datatar      = path.join(__dirname, 'test-data.tar')
-  , datadir      = path.join(__dirname, 'test-data')
-  , db
-  , expectedEntries
+var dblocation = path.join(__dirname, 'levelup_test_binary.db')
+var datatar = path.join(__dirname, 'test-data.tar')
+var datadir = path.join(__dirname, 'test-data')
+
+var db
+var expectedEntries
 
 module.exports.dblocation = dblocation
-module.exports.datatar    = datatar
-module.exports.datadir    = datadir
+module.exports.datatar = datatar
+module.exports.datadir = datadir
 
 module.exports.opendb = function (dblocation, callback) {
   level(
-      dblocation
-    , { createIfMissing: true , errorIfExists: false, keyEncoding: 'utf8', valueEncoding: 'binary' }
+    dblocation
+    , { createIfMissing: true, errorIfExists: false, keyEncoding: 'utf8', valueEncoding: 'binary' }
     , function (err, _db) {
-        db = _db
-        console.log('Opened database...')
-        callback(err)
-      }
+      db = _db
+      console.log('Opened database...')
+      callback(err)
+    }
   )
 }
 
@@ -33,8 +34,9 @@ module.exports.extract = function (tarfile, dir, callback) {
   fs.createReadStream(tarfile)
     .pipe(tar.Extract({ path: dir }))
     .on('entry', function (entry) {
-      if (entry.props.File || entry.File || entry.type == 'File')
+      if (entry.props.File || entry.File || entry.type === 'File') {
         expectedEntries++
+      }
     })
     .on('end', function () {
       console.log('Extracted tar file...')
@@ -49,7 +51,7 @@ module.exports.fstreamWrite = function (callback) {
         console.log('Piped data to database...')
         callback()
       }))
-      .on('error', callback)
+    .on('error', callback)
 }
 
 // using sync:true will force a flush to the fs, otherwise the readStream() is too
@@ -66,7 +68,7 @@ module.exports.verify = function (callback) {
   db.readStream()
     .on('data', function (data) {
       var md5sum = crypto.createHash('md5')
-        , dbmd5sum
+      var dbmd5sum
 
       md5sum.update(data.value)
       dbmd5sum = md5sum.digest('hex')
@@ -77,7 +79,7 @@ module.exports.verify = function (callback) {
         .on('end', function () {
           var fsmd5sum = md5sum.digest('hex')
           assert.equals(
-              dbmd5sum
+            dbmd5sum
             , fsmd5sum
             , 'MD5 sum compare of ' + data.key + ' failed (' + dbmd5sum + ' != ' + fsmd5sum + ')'
           )

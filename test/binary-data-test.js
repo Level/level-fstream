@@ -6,30 +6,30 @@
  * the binary files.
  */
 
-var async     = require('async')
-  , rimraf    = require('rimraf')
-  , tarcommon = require('./tarcommon')
+var async = require('async')
+var rimraf = require('rimraf')
+var tarcommon = require('./tarcommon')
 
 console.log('***************************************************')
 console.log('RUNNING BINARY-DATA-TEST...')
 
 async.series([
-    // pre-clean
-    rimraf.bind(null, tarcommon.dblocation)
-  , rimraf.bind(null, tarcommon.datadir)
-    // extract data for comparison
-  , tarcommon.extract.bind(null, tarcommon.datatar, tarcommon.datadir)
-    // open database
-  , tarcommon.opendb.bind(null, tarcommon.dblocation)
-    // push the data into a database
-  , tarcommon.fstreamWrite
-    // run a sync put & del to force an fs sync
-  , tarcommon.sync
-    // verify database entries are the same as the files
-  , tarcommon.verify
-    // clean up
-  , rimraf.bind(null, tarcommon.dblocation)
-  , rimraf.bind(null, tarcommon.datadir)
+  // pre-clean
+  rimraf.bind(null, tarcommon.dblocation),
+  rimraf.bind(null, tarcommon.datadir),
+  // extract data for comparison
+  tarcommon.extract.bind(null, tarcommon.datatar, tarcommon.datadir),
+  // open database
+  tarcommon.opendb.bind(null, tarcommon.dblocation),
+  // push the data into a database
+  tarcommon.fstreamWrite,
+  // run a sync put & del to force an fs sync
+  tarcommon.sync,
+  // verify database entries are the same as the files
+  tarcommon.verify,
+  // clean up
+  rimraf.bind(null, tarcommon.dblocation),
+  rimraf.bind(null, tarcommon.datadir)
 ], function (err) {
   if (err) console.error('Error', err)
   else console.log('No errors? All good then!')
