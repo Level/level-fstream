@@ -13,20 +13,20 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "concat-stream": "^0.1.1",
-    "xtend": "^2.1.2"
+    "concat-stream": "0.1.1",
+    "xtend": "2.2.0"
   },
   "devDependencies": {
-    "async": "^0.2.10",
-    "boganipsum": "^0.1.0",
-    "fstream": "^0.1.25",
-    "level": "^4.0.0",
+    "async": "0.2.10",
+    "boganipsum": "0.1.0",
+    "fstream": "0.1.31",
+    "level": "4.0.0",
     "mkfiletree": "0.0.1",
     "readfiletree": "0.0.1",
-    "referee": "^1.0.2",
-    "rimraf": "^2.2.6",
-    "standard": "^11.0.1",
-    "tar": "^0.1.19"
+    "referee": "1.2.0",
+    "rimraf": "2.6.3",
+    "standard": "11.0.1",
+    "tar": "0.1.20"
   },
   "license": "MIT"
 }
